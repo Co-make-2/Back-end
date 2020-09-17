@@ -22,6 +22,7 @@ exports.up = function(knex) {
         tbl.text("description").notNull()
         tbl.text("location").notNull()
         tbl.text("city")
+        tbl.text("state")
         tbl.integer("zipCode")
         tbl.integer("upVotes")
     })
