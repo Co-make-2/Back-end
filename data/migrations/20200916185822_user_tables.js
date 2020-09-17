@@ -29,7 +29,7 @@ exports.up = function(knex) {
     /************user-profiles_listings  **************************************************/
     .createTable("user-profiles_listings", tbl => {
         tbl.integer("userId").notNull().references("id").inTable("users")
-        tbl.integer("listingsId").notNull().refrences("listingsId").inTable("listings")
+        tbl.integer("listingsId").notNull().references("listingsId").inTable("listings")
     })
 };
 
