@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=testing jest --watch",
-    "server":"cross-env NODE_ENV=development nodemon index.js"
+    "test": "jest --watch",
+    "server": "nodemon index.js"
   },
-  "jest":{
-    "testEnvironment":"node"
+  "jest": {
+    "testEnvironment": "node"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,6 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.5",
     "node": "^14.11.0",
-    "save": "^2.4.0",
     "sqlite3": "^5.0.0"
   },
   "devDependencies": {
