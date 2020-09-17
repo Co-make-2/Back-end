@@ -1,13 +1,14 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('listings').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('listings').insert([
+        {listingsId: 1, userId:"", listingsName:"", description:"", location:"", city:"", state:"", zipCode:"", upVotes: 1 },
+        {listingsId: 2, userId:"", listingsName:"", description:"", location:"", city:"", state:"", zipCode:"", upVotes: 1},
+        {listingsId: 3, userId:"", listingsName:"", description:"", location:"", city:"", state:"",zipCode:"", upVotes: 1},
+        {listingsId: 4, userId:"", listingsName:"", description:"", location:"", city:"", state:"",zipCode:"", upVotes: 1}
       ]);
     });
 };
