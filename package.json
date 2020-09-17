@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/Co-make-2/Back-end/issues"
   },
-  "homepage": "https://github.com/Co-make-2/Back-end#readme"
+  "homepage": "https://github.com/Co-make-2/Back-end#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "knex": "^0.21.5",
+    "sqlite3": "^5.0.0"
+  }
 }
