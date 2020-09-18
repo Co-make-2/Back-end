@@ -7,14 +7,14 @@ module.exports = async (req,res,next) => {
             return res.status(401).json({message:"no token!"})
         }
        
-        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET||"it can't rain all the time", (err, decoded) => {
             if(err){
                 return res.status(401).json({message:"invalid token"})
             }
             req.token = decoded
             next()
         })
-        
+
     }catch(err){
         res.status(401).json({ message: "You shall not pass!!"})
     }

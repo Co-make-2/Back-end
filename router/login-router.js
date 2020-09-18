@@ -5,10 +5,10 @@ const db = require("../model/user-model");
 
 const router = express.Router();
 
-router.post("/api/login", async(req,res) => {
+router.post("/", async(req,res) => {
     try{
         const {username, password} = req.body
-        const user = await db.findby({ usernmae }).first()
+        const user = await db.findBy({ username }).first()
 
         if(!user){
             return res.status(401).json({ message:"Invalid username"})
