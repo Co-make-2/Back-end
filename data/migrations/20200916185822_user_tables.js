@@ -14,10 +14,30 @@ exports.up = function(knex) {
         tbl.text("skills")
         tbl.text("listings")
     })
+    /*******************adding the listings table ****************************************/
+    .createTable("listings",tbl => {
+        tbl.increments("listingsId")
+        tbl.integer("userId").notNull().references("id").inTable("users")
+        tbl.text("listingsName").notNull()
+        tbl.text("description").notNull()
+        tbl.text("location").notNull()
+        tbl.text("city")
+        tbl.text("state")
+        tbl.integer("zipCode")
+        tbl.integer("upVotes")
+    })
+    /************user-profiles_listings  **************************************************/
+    .createTable("user-profiles_listings", tbl => {
+        tbl.integer("userId").notNull().references("id").inTable("users")
+        tbl.integer("listingsId").notNull().references("listingsId").inTable("listings")
+    })
 };
 
 exports.down = function(knex) {
     return knex.schema
+        .dropTableIfExists("user-profiles_listings")
+        .dropTableIfExists("listings")
         .dropTableIfExists("user-profiles")
         .dropTableIfExists("users")
+        
 };
