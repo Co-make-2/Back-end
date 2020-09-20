@@ -18,6 +18,7 @@ exports.up = function(knex) {
     .createTable("listings",tbl => {
         tbl.increments("listingsId")
         tbl.integer("userId").notNull().references("id").inTable("users")
+        tbl.text("username").notNull().references("username").inTable("users")
         tbl.text("listingsName").notNull()
         tbl.text("description").notNull()
         tbl.text("location").notNull()
