@@ -21,10 +21,10 @@ function findBy(filter){
         .where(filter)
 };
 
-/**************find by listing id ***********************************************************************/
-function findById(id){
+/**************find by listings id ***********************************************************************/
+function findById(listingsId){
     return db("listings")
-        .where({ id })
+        .where({ listingsId })
         .first()
 };
 
@@ -35,14 +35,14 @@ function findByUserId(userId){
 };
 
 /****************edit listing by listing id *******************************************************************/
-function editListingById(id,changes){
+function editListingById(listingsId,changes){
     return db("listings")
         .where({ id })
         .update(changes)
 }
 
 /********delete listing by it's id  ***********************************************************************/
-function deleteListingById(id){
-    return db("listings").where({ id }).del()
+function deleteListingById(lstingsId){
+    return db("listings").where({ listingsId }).del()
 };
 

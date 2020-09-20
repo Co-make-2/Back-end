@@ -32,4 +32,9 @@ describe("user testing", () => {
                 expect(res.type).toBe('application/json')
                 expect(res.body.message).toBe("Welcome justaduck")
     })
+    it("POST /api/listings", async() => {
+        const res = await supertest(server)
+                .post("/api/listings")
+                .send({})
+    })
 });
