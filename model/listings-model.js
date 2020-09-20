@@ -37,7 +37,7 @@ function findByUserId(userId){
 /****************edit listing by listing id *******************************************************************/
 function editListingById(listingsId,changes){
     return db("listings")
-        .where({ id })
+        .where({ listingsId })
         .update(changes)
 }
 
