@@ -20,8 +20,8 @@ describe("user testing", () => {
                 .post("/api/register")
                 .send({ username:"justaduck", password:"whatup"})
                 //console.log(res)
-               // expect(res.statusCode).toBe(201)
-               // expect(res.type).toBe("application/json")
+                expect(res.statusCode).toBe(201)
+                expect(res.type).toBe("application/json")
     })
     it("POST /api/login", async() => {
         const res = await supertest(server)
@@ -35,6 +35,13 @@ describe("user testing", () => {
     it("POST /api/listings", async() => {
         const res = await supertest(server)
                 .post("/api/listings")
-                .send({})
+                .send({userId:1, username:"justaduck", listingsName:"stray dog", description:"stray friendly pitbull", 
+            location:"5th and main street", city:"Athens"})
+            //console.log(res)
+                expect(res.statusCode).toBe(201)
+                expect(res.type).toBe("application/json")
+                expect(res.body.message).toBe("Task created successfully")
     })
 });
+
+
