@@ -35,9 +35,12 @@ describe("user testing", () => {
     it("POST /api/listings", async() => {
         const res = await supertest(server)
                 .post("/api/listings")
-                .send({userId:4, username:"justaduck", listingsName:"stray dog", description:"stray friendly pitbull", 
+                .send({userId:1, username:"justaduck", listingsName:"stray dog", description:"stray friendly pitbull", 
             location:"5th and main street", city:"Athens"})
-            console.log(res)
+            //console.log(res)
+                expect(res.statusCode).toBe(201)
+                expect(res.type).toBe("application/json")
+                expect(res.body.message).toBe("Task created successfully")
     })
 });
 
