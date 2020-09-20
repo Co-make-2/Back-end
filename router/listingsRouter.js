@@ -84,6 +84,18 @@ router.put("/:id", async (req,res)=> {
     }
 });
 
+/************delete listing by listingId ****************************************************************/
+router.delete("/:id", async(req, res) => {
+    try{
+        const deletedListing = await listModel.deleteListingById(req.params.id)
+        res.status(202).json({message:"Listing deleted successfully"})
+
+    }catch(err){
+        console.log(err)
+        res.status(500).json({ message: "Could not delete task"})
+    }
+});
+
 function validateUserId(){
     return async (req, res, next) => {
         try{
