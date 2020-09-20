@@ -39,6 +39,7 @@ function editListingById(listingsId,changes){
     return db("listings")
         .where({ listingsId })
         .update(changes)
+        
 }
 
 /********delete listing by it's id  ***********************************************************************/
