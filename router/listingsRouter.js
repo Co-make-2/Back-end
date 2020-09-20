@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const listModel = require("../model/listings-model");
 const db = require("../data/dbConfig");
+const listingsModel = require("../model/listings-model");
 
 
 /*************add new listing return listing id if created successfully************************/
@@ -68,6 +69,18 @@ router.post("/zipcode", async (req,res) => {
     }catch(err){
         console.log(err)
         res.status(500).json({ message:"Error getting posts by zipcode"})
+    }
+});
+
+/*********edit listing by listingId return edited listing***********************************************/
+router.put("/:id", async (req,res)=> {
+    try{
+      const upDatedListing = await listModel.editListingById(req.params.id, req.body)
+      res.status(201).json({ message:"Task editted successfully"})
+
+    }catch(err){
+        console.log(err)
+        res.status(500).json({ message:"Failed to update listing"})
     }
 });
 
