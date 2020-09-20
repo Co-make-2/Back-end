@@ -10,9 +10,9 @@ module.exports = {
 };
 
 /**********************add a listing  ***********************************/
-function addListing(listing, user_id){
+function addListing(listing){
     return db("listings")
-    .insert({listing, user_id})
+    .insert({listing})
 };
 
 /**************find by search will find by anything you search for in the listings table and return all matching your search **********/
