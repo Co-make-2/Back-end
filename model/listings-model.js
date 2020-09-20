@@ -43,7 +43,7 @@ function editListingById(listingsId,changes){
 }
 
 /********delete listing by it's id  ***********************************************************************/
-function deleteListingById(lstingsId){
+function deleteListingById(listingsId){
     return db("listings").where({ listingsId }).del()
 };
 
