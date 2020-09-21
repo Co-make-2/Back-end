@@ -50,15 +50,15 @@ function deleteListingById(listingsId){
 };
 
 /************increment vote *******************/
-function incrementVote(id){
+function incrementVote(listingsId){
     return db("listings")
         .where({ listingsId })
         .increment("upVotes",1)
 };
 
 /******decrement vote *******************************/
-function decrementVote(id){
+function decrementVote(listingsId){
     return db("listings")
         .where({ listingsId })
-        .decrement("votes",1)
+        .decrement("upVotes",1)
 }
