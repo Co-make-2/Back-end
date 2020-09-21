@@ -13,6 +13,7 @@ function addUser(userCredentials){
         .insert(userCredentials)
 }
 
+
 module.exports = {
     addUser,
     findBy
