@@ -96,6 +96,26 @@ router.delete("/:id", async(req, res) => {
     }
 });
 
+/***************increment or decrement votes on listing by id *************************************/
+router.post("/:id", async (req,res) => {
+    try{
+        const listingsId = req.params.id
+        let listing = await listModel.findById(listingsId)
+        if(req.body.upVotes === -1){
+            listing = await listModel.decrementVote(listingsId)
+        }else if (req.body.upVotes === 1){
+            listing = await listModel.incrementVote(listingsId)
+        }else{
+             res.status(401).json({ message: "no vote indicated"})
+        }
+          res.status(201).json({ message:"Vote recorded"})
+
+    }catch(err){
+        console.log(err)
+        res.status(501).json({ message:"Could not commit vote"})
+    }
+})
+
 function validateUserId(){
     return async (req, res, next) => {
         try{

@@ -7,6 +7,8 @@ module.exports = {
     findByUserId,
     editListingById,
     deleteListingById,
+    incrementVote,
+    decrementVote,
 };
 
 /**********************add a listing  ***********************************/
@@ -47,3 +49,16 @@ function deleteListingById(listingsId){
     return db("listings").where({ listingsId }).del()
 };
 
+/************increment vote *******************/
+function incrementVote(listingsId){
+    return db("listings")
+        .where({ listingsId })
+        .increment("upVotes",1)
+};
+
+/******decrement vote *******************************/
+function decrementVote(listingsId){
+    return db("listings")
+        .where({ listingsId })
+        .decrement("upVotes",1)
+}
