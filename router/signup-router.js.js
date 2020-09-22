@@ -4,7 +4,7 @@ const db = require('../model/user-model')
 
 const user = express.Router()
 
-user.post('/api/register', async (req, res, next) => {
+user.post('/', async (req, res, next) => {
     try {
         const { username, password } = req.body
 		const user = await db.findBy({ username }).first()
