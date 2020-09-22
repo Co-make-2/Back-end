@@ -38,7 +38,7 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'sqlite3',
     connection: {
       database: './data/comake.db3',
       user:     'lambdastudent',
@@ -51,16 +51,5 @@ module.exports = {
       directory: './data/seeds'
     }
   }
-
-//   production: {
-//     client: 'pg',
-//     connection: process.env.DATABASE_URL,
-//     migrations: {
-//         directory: __dirname + '/db/migrations',
-//     },
-//     seeds: {
-//         directory: __dirname + '/db/seeds/production',
-//     },
-// },
 
 };
