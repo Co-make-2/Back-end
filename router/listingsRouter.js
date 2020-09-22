@@ -39,7 +39,7 @@ router.get("/users/:id", restrict,validateUserId(), async(req,res)=> {
 /*************get listings by city  ************************/
 router.post("/city",restrict, async (req,res) => {
     try{
-        const { city } = req.body.body
+        const { city } = req.body
         const listings = await listModel.findBy({ city })
         if(!city){
             return res.status(400).json({message:"City must be included"})
