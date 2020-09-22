@@ -6,7 +6,7 @@ const restrict = require("./restrictMiddleware");
 
 
 /*************add new listing return listing id if created successfully************************/
-router.post("/",restrict, async(req,res) => {
+router.post("/",restrict , async(req,res) => {
     try{
         const newListing = await listModel.addListing(req.body)
         if(!newListing){
