@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const listModel = require("../model/listings-model");
 const db = require("../data/dbConfig");
-const listingsModel = require("../model/listings-model");
+
 
 
 /*************add new listing return listing id if created successfully************************/
@@ -24,6 +24,9 @@ router.post("/", async(req,res) => {
 router.get("/users/:id", validateUserId(), async(req,res)=> {
     try{
         const listings = await listModel.findByUserId(req.params.id)
+        if(!listings){
+            res.status(401).json({ message:"The user has not created any listings"})
+        }
         res.json(listings)
 
     }catch(err){
@@ -43,7 +46,7 @@ router.post("/city", async (req,res) => {
         if(listings.length > 0){
              res.status(201).json(listings)
         }else{
-            res.status(401).json({message:"There are no posts for that specified area currently"})
+            res.status(401).json({message:"There are no listings for that specified area currently"})
         }   
 
     }catch(err){
@@ -63,7 +66,7 @@ router.post("/zipcode", async (req,res) => {
         if(listings.length > 0){
              res.status(201).json(listings)
         }else{
-            res.status(401).json({message:"There are no posts for that specified area currently"})
+            res.status(401).json({message:"There are no listings for that specified area currently"})
         }   
 
     }catch(err){
@@ -72,11 +75,11 @@ router.post("/zipcode", async (req,res) => {
     }
 });
 
-/*********edit listing by listingId return edited listing***********************************************/
+/*********edit listing by listingId return message of successful edit***********************************************/
 router.put("/:id", async (req,res)=> {
     try{
       const upDatedListing = await listModel.editListingById(req.params.id, req.body)
-      res.status(201).json({ message:"Task editted successfully"})
+      res.status(201).json({ message:"Listing edited successfully"})
 
     }catch(err){
         console.log(err)
