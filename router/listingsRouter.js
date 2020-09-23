@@ -5,19 +5,19 @@ const restrict = require("./restrictMiddleware");
 
 
 /*************get all listings  *****************************************************************/
-/*
-router.get("/",restrict, async(req,res) => {
-    try{
-        const listings = await listModel.
 
+router.get("/", restrict, async(req,res) => {
+    try{
+        const listings = await db("listings")
+        res.status(200).json(listings)
     }catch(err){
         console.log(err)
-        res.status(500).json({ })
+        res.status(500).json(err)
     }
-});*/
+});
 
 /*************add new listing return listing id if created successfully************************/
-router.post("/",restrict , async(req,res) => {
+router.post("/", restrict, async(req,res) => {
     try{
         const newListing = await listModel.addListing(req.body)
         if(!newListing){
@@ -33,7 +33,7 @@ router.post("/",restrict , async(req,res) => {
 });
 
 /*************get listings by userId *************************/
-router.get("/users/:id", restrict,validateUserId(), async(req,res)=> {
+router.get("/users/:id", restrict, validateUserId(), async(req,res)=> {
     try{
         const listings = await listModel.findByUserId(req.params.id)
         if(!listings){
@@ -48,7 +48,7 @@ router.get("/users/:id", restrict,validateUserId(), async(req,res)=> {
 });
 
 /*************get listings by city  ************************/
-router.post("/city",restrict, async (req,res) => {
+router.post("/city", restrict, async (req,res) => {
     try{
         const { city } = req.body
         const listings = await listModel.findBy({ city })
@@ -68,7 +68,7 @@ router.post("/city",restrict, async (req,res) => {
 });
 
 /********search by zipcode  ******************************************/
-router.post("/zipcode", restrict,async (req,res) => {
+router.post("/zipcode", restrict, async (req,res) => {
     try{
         const { zipCode } = req.body
         const listings = await listModel.findBy({ zipCode })
@@ -88,7 +88,7 @@ router.post("/zipcode", restrict,async (req,res) => {
 });
 
 /*********edit listing by listingId return message of successful edit***********************************************/
-router.put("/:id", restrict ,async (req,res)=> {
+router.put("/:id", restrict, async (req,res)=> {
     try{
       const upDatedListing = await listModel.editListingById(req.params.id, req.body)
       res.status(201).json({ message:"Listing edited successfully"})
@@ -100,7 +100,7 @@ router.put("/:id", restrict ,async (req,res)=> {
 });
 
 /************delete listing by listingId ****************************************************************/
-router.delete("/:id",restrict, async(req, res) => {
+router.delete("/:id", restrict, async(req, res) => {
     try{
         const deletedListing = await listModel.deleteListingById(req.params.id)
         res.status(202).json({message:"Listing deleted successfully"})
@@ -112,7 +112,7 @@ router.delete("/:id",restrict, async(req, res) => {
 });
 
 /***************increment or decrement votes on listing by id *************************************/
-router.post("/:id",restrict, async (req,res) => {
+router.post("/:id", restrict, async (req,res) => {
     try{
         const listingsId = req.params.id
         let listing = await listModel.findById(listingsId)
