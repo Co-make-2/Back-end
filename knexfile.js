@@ -19,6 +19,7 @@ module.exports = {
 
   staging: {
     client: 'sqlite3',
+    useNullAsDefault: true,
     connection: {
       database: './data/comake.db3',
       user:     'username',
@@ -39,6 +40,7 @@ module.exports = {
 
   production: {
     client: 'sqlite3',
+    useNullAsDefault: true,
     connection: {
       database: './data/comake.db3',
       user:     'lambdastudent',
