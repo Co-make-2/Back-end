@@ -1,9 +1,9 @@
-const hashedPassword = $2a$15$KJYjWGENwpdazhjsv6ESSuRaFLm9qjBWzbqww1T/KIPbboGSbT.eK;
+const hashedPassword = "$2a$15$KJYjWGENwpdazhjsv6ESSuRaFLm9qjBWzbqww1T/KIPbboGSbT.eK";
 
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('users').del()
+  return knex('users').truncate()
     .then(function () {
       // Inserts seed entries
       return knex('users').insert([
