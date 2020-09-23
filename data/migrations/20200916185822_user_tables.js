@@ -12,9 +12,9 @@ exports.up = function(knex) {
         tbl.text("name")
         tbl.text("city").notNull()
         tbl.text("state").notNull()
-        tbl.integer("zipCode").notNull()
+        tbl.text("zipCode").notNull()
         tbl.text("skills")
-        tbl.text("listings")
+        tbl.text("listings").references("listingsName").inTable("listings")
     })
     /*******************adding the listings table ****************************************/
     .createTable("listings",tbl => {
