@@ -5,7 +5,7 @@ const restrict = require("./restrictMiddleware");
 
 
 /*************get all listings  *****************************************************************/
-
+/*
 router.get("/",restrict, async(req,res) => {
     try{
         const listings = await listModel.
@@ -14,7 +14,7 @@ router.get("/",restrict, async(req,res) => {
         console.log(err)
         res.status(500).json({ })
     }
-});
+});*/
 
 /*************add new listing return listing id if created successfully************************/
 router.post("/",restrict , async(req,res) => {
