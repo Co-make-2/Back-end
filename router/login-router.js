@@ -21,7 +21,7 @@ router.post("/", async(req,res) => {
             userId: user.id
         },process.env.JWT_SECRET||"it can't rain all the time");
         res.cookie("token",token)
-        res.status(200).json({message:`Welcome ${user.username}`})
+        res.status(200).json({token , message:`Welcome ${user.username}`})
 
     }catch(err){
         console.log("error from login call",err)
