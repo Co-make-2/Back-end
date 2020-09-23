@@ -41,7 +41,11 @@ module.exports = {
   production: {
     client: 'sqlite3',
     useNullAsDefault: true,
-    connection: process.env.DATABASE_URL,
+    connection: {
+      database: './data/comake.db3',
+      user:     'lambdastudent',
+      password: 'ilovecoding'
+    },
     migrations: {
       directory: './data/migrations',
     },
