@@ -1,3 +1,5 @@
+
+//pre-hashed password for whatup 
 const hashedPassword = "$2a$15$KJYjWGENwpdazhjsv6ESSuRaFLm9qjBWzbqww1T/KIPbboGSbT.eK";
 
 
