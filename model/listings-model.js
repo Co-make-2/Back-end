@@ -9,6 +9,11 @@ module.exports = {
     deleteListingById,
     incrementVote,
     decrementVote,
+    getAllListings,
+};
+
+function getAllListings(){
+    return db("listings")
 };
 
 /**********************add a listing  ***********************************/
