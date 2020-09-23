@@ -12,7 +12,7 @@ exports.up = function(knex) {
         tbl.text("name")
         tbl.text("city").notNull()
         tbl.text("state").notNull()
-        tbl.integer("zipCode").notNull()
+        tbl.text("zipCode").notNull()
         tbl.text("skills")
         tbl.text("listings")
     })
@@ -26,7 +26,7 @@ exports.up = function(knex) {
         tbl.text("location").notNull()
         tbl.text("city").notNull()
         tbl.text("state").notNull()
-        tbl.integer("zipCode").notNull()
+        tbl.text("zipCode").notNull()
         tbl.integer("upVotes").notNull().defaultTo(0)
     })
     /************user-profiles_listings  **************************************************/
