@@ -16,6 +16,11 @@ expects a username and a password upon successful login a json token will be sen
 
 Listings endpoints
 
+get all listings endpoint
+
+get to https://comake-app.herokuapp.com/api/listings 
+expects a log in token and returns an array of all listings 
+
 add a listing
 
 post to  https://comake-app.herokuapp.com/api/listings

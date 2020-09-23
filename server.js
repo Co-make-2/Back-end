@@ -14,7 +14,7 @@ server.use(express.json());
 server.use("/api/login",login)
 server.use("/api/register", signup)
 server.use("/api/listings", listings)
-server.use("/api/users", users)
+//server.use("/api/users", users)
 
 server.get('/', (req, res) => {
     res.send(`<h2>Welcome to your API!</h2>`)
