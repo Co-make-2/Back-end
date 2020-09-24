@@ -2,9 +2,9 @@ const express = require('express')
 const bcrypt = require('bcryptjs')
 const db = require('../model/user-model')
 
-const user = express.Router()
+const users = express.Router()
 
-user.post('/', async (req, res, next) => {
+users.post('/', async (req, res, next) => {
     try {
         const { username, password } = req.body
 		const user = await db.findBy({ username }).first()
@@ -20,11 +20,15 @@ user.post('/', async (req, res, next) => {
 			password: await bcrypt.hash(password, 15),
 		})
 
-		res.status(201).json(newUser)
+		const token = jwt.sign({
+            userId: newUser.id
+        },process.env.JWT_SECRET||"it can't rain all the time");
+        res.cookie("token",token)
+        res.status(200).json({token , message:`Welcome ${newUser.username}`})
 
 	} catch (err) {
         next(err)
     }
 })
 
-module.exports = user;
+module.exports = users;
