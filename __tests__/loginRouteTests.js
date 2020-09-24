@@ -18,15 +18,20 @@ describe("user testing", () => {
     it("POST /api/register", async() => {
         const res = await supertest(server)
                 .post("/api/register")
-                .send({ username:"justaduck", password:"whatup"})
-                //console.log(res)
-                expect(res.statusCode).toBe(201)
+                .send({ 
+                    username:"justaduck", 
+                    password:"whatup"
+                })
+                expect(res.statusCode).toBe(200)
                 expect(res.type).toBe("application/json")
     })
     it("POST /api/login", async() => {
         const res = await supertest(server)
                 .post("/api/login")
-                .send({ username:"justaduck", password:"whatup"})
+                .send({ 
+                    username:"justaduck", 
+                    password:"whatup"
+                })
                // console.log(res)
                 expect(res.statusCode).toBe(200)
                 expect(res.type).toBe('application/json')
@@ -35,12 +40,39 @@ describe("user testing", () => {
     it("POST /api/listings", async() => {
         const res = await supertest(server)
                 .post("/api/listings")
-                .send({userId:1, username:"justaduck", listingsName:"stray dog", description:"stray friendly pitbull", 
-            location:"5th and main street", city:"Athens"})
+                .send({
+                    userId:1, 
+                    username:"justaduck", 
+                    listingsName:"stray dog", 
+                    description:"stray friendly pitbull", 
+                    location:"5th and main street", 
+                    city:"Athens",
+                    state: "GA",
+                    zipCode: "45609",
+                    upVotes: 0
+                })
             //console.log(res)
                 expect(res.statusCode).toBe(201)
                 expect(res.type).toBe("application/json")
                 expect(res.body.message).toBe("Task created successfully")
+    })
+
+    it("POST /api/users", async() => {
+        const res = await supertest(server)
+                .post("/api/users")
+                .send({
+                    userId:1, 
+                    username:"justaduck", 
+                    name:"Daffy", 
+                    city: "Englewood", 
+                    state: "CA", 
+                    zipCode: "13450", 
+                    skills: "Impressions"
+                })
+            //console.log(res)
+                expect(res.statusCode).toBe(201)
+                expect(res.type).toBe("application/json")
+                expect(res.body.message).toBe("Profile created successfully")
     })
 });
 
