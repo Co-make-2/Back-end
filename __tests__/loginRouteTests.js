@@ -1,7 +1,6 @@
 const supertest = require("supertest");
 const server = require("../server");
 const db = require("../data/dbConfig");
-const { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } = require("constants");
 
 
 beforeAll(async () => {
