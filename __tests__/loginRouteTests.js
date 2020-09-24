@@ -34,13 +34,16 @@ describe("user testing", () => {
                     username:"justaduck", 
                     password:"whatup"
                 })
-                const { token } = await login.body
                // console.log(res)
                 expect(res.statusCode).toBe(200)
                 expect(res.type).toBe('application/json')
                 expect(res.body.message).toBe("Welcome justaduck")
     })
     it("POST /api/listings", async() => {
+        const login = await supertest(server)
+            .post("api/login")
+            .send({username:"justaduck", password:"whatup"})
+            const { token } = await login.body;
         const res = await supertest(server)
                 .post("/api/listings")
                 .set("authorization",token)
