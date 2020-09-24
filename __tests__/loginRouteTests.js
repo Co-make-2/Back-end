@@ -43,7 +43,7 @@ describe("user testing", () => {
         const login = await supertest(server)
             .post("api/login")
             .send({username:"justaduck", password:"whatup"})
-            const { token } = await login.body;
+            const { token } = await login.body.token;
         const res = await supertest(server)
                 .post("/api/listings")
                 .set("authorization",token)
