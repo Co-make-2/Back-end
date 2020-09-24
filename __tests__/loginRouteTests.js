@@ -1,6 +1,7 @@
 const supertest = require("supertest");
 const server = require("../server");
 const db = require("../data/dbConfig");
+const { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } = require("constants");
 
 
 beforeAll(async () => {
@@ -22,6 +23,7 @@ describe("user testing", () => {
                     username:"justaduck", 
                     password:"whatup"
                 })
+                console.log(res.body)
                 expect(res.statusCode).toBe(200)
                 expect(res.type).toBe("application/json")
     })
@@ -32,6 +34,7 @@ describe("user testing", () => {
                     username:"justaduck", 
                     password:"whatup"
                 })
+                const { token } = await login.body
                // console.log(res)
                 expect(res.statusCode).toBe(200)
                 expect(res.type).toBe('application/json')
@@ -40,9 +43,10 @@ describe("user testing", () => {
     it("POST /api/listings", async() => {
         const res = await supertest(server)
                 .post("/api/listings")
+                .set("authorization",token)
                 .send({
                     userId:1, 
-                    username:"justaduck", 
+                    username:"justaduck",
                     listingsName:"stray dog", 
                     description:"stray friendly pitbull", 
                     location:"5th and main street", 
