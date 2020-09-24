@@ -22,21 +22,20 @@ function createProfile(userCredentials){
 // Retrieves a user's profile when you click on that username
 function getUserProfile(userId) {
     return db("user-profiles")
-        .select("id", "username")
-        .where(userId)
+        .where({ userId })
 }
 
 // Gives ability to edit your own user profile
-function editProfile(id, changes) {
+function editProfile(userId, changes) {
     return db("user-profiles")
-        .where({ id })
+        .where({ userId })
         .update(changes)
 }
 
 // Deletes profile
-function deleteProfile() {
+function deleteProfile(userId) {
     return db("user-profiles")
-        .where({ id })
+        .where({ userId })
         .del()
 }
 
