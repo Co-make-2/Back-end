@@ -32,21 +32,6 @@ router.post("/", restrict, async(req,res) => {
     }
 });
 
-/*************get listings by userId *************************/
-router.get("/users/:id", restrict, validateUserId(), async(req,res)=> {
-    try{
-        const listings = await listModel.findByUserId(req.params.id)
-        if(!listings){
-            res.status(401).json({ message:"The user has not created any listings"})
-        }
-        res.json(listings)
-
-    }catch(err){
-        console.log(err)
-        res.status(500).json({ message:"Could not retrieve user's listings"})
-    }
-});
-
 /*************get listings by city  ************************/
 router.post("/city", restrict, async (req,res) => {
     try{
