@@ -10,13 +10,13 @@ function findBy(username) {
 // Registers a new user
 function addUser(userCredentials){
     return db("users")
-        .insert(userCredentials)
+        .insert(userCredentials, 'id')
 }
 
 // Creates a profile for the user
 function createProfile(userCredentials){
     return db("user-profiles")
-        .insert(userCredentials)
+        .insert(userCredentials, 'id')
 }
 
 // Retrieves a user's profile when you click on that username

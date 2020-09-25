@@ -21,7 +21,7 @@ exports.up = function(knex) {
     })
 
     .createTable("user-profiles", tbl => {
-        tbl.integer("userId").notNull().references("id").inTable("users")
+        tbl.integer("userId").notNull().unique().references("id").inTable("users")
         tbl.text("username").notNull().unique().references("username").inTable("users")
         tbl.text("name")
         tbl.text("city").notNull()

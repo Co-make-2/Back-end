@@ -18,6 +18,24 @@ function validateUserId(){
     }
 }
 
+function validateUserProfile(){
+    return async (req, res, next) => {
+        try{
+            const { id } = req.params
+            const user = await db("user-profiles").where({ userId : id }).first()
+
+            if(!user){
+                return res.status(404).json({ mesage:"User not found"})
+            }
+            req.user = user
+            next()
+
+        }catch(err){
+
+        }
+    }
+}
+
 async function restrict(req,res,next) {
     try{
         const token = req.headers.authorization;
@@ -41,5 +59,6 @@ async function restrict(req,res,next) {
 
 module.exports = {
     validateUserId,
+    validateUserProfile,
     restrict
 }
