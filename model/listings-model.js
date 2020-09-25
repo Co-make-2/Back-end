@@ -66,4 +66,5 @@ function decrementVote(listingsId){
     return db("listings")
         .where({ listingsId })
         .decrement("upVotes",1)
-}
+};
+
