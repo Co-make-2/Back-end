@@ -28,12 +28,7 @@ exports.up = function(knex) {
         tbl.text("state").notNull()
         tbl.text("zipCode").notNull()
         tbl.text("skills")
-        tbl.text("listings").references("listingsName").inTable("listings")
-    })
-
-    .createTable("user-profiles_listings", tbl => {
-        tbl.integer("userId").notNull().references("id").inTable("users")
-        tbl.integer("listingsId").notNull().references("listingsId").inTable("listings")
+        // tbl.text("listings").references("listingsName").inTable("listings")
     })
 };
 

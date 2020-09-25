@@ -1,5 +1,7 @@
 const express = require('express')
 const db = require('../model/user-model')
+const Listings = require("../model/listings-model")
+const { validateUserId, restrict } = require("./restrictMiddleware")
 
 const users = express.Router()
 
@@ -25,24 +27,23 @@ users.post('/', async (req, res, next) => {
 })
 
 //GET /api/users/:id
-users.get('/:id', async (req, res, next) => {
+users.get('/:id', validateUserId(), async (req, res, next) => {
     try {
         const userProfile = await db.getUserProfile(req.params.id)
+        const userListings = await Listings.findByUserId(req.params.id)
 
-        if (!userProfile) {
-            res.status(404).json({
-                error: "User could not be found"
-            })
-        } else {
-            res.status(200).json(userProfile)
-        }
+        res.status(200).json({
+            userProfile,
+            userListings
+        })
+        
     } catch (err) {
         next(err)
     }
 })
 
 //PUT /api/users/:id
-users.put('/:id', async (req, res, next) => {
+users.put('/:id', validateUserId(), async (req, res, next) => {
     try {
         const userProfile = await db.editProfile(req.params.id, req.body)
 
@@ -59,7 +60,7 @@ users.put('/:id', async (req, res, next) => {
 })
 
 //DELETE /api/users/:id
-users.delete('/:id', async (req, res, next) => {
+users.delete('/:id', validateUserId(), async (req, res, next) => {
     try {
         const userProfile = await db.deleteProfile(req.params.id)
 
