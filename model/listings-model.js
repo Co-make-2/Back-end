@@ -19,7 +19,7 @@ function getAllListings(){
 /**********************add a listing  ***********************************/
 function addListing(listing){
     return db("listings")
-    .insert(listing)
+    .insert(listing, 'id')
 };
 
 /**************find by search will find by anything you search for in the listings table and return all matching your search **********/

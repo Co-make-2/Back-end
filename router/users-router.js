@@ -1,7 +1,7 @@
 const express = require('express')
 const db = require('../model/user-model')
 const Listings = require("../model/listings-model")
-const { validateUserId, restrict } = require("./restrictMiddleware")
+const { validateUserId, restrict, validateUserProfile } = require("./restrictMiddleware")
 
 const users = express.Router()
 
@@ -27,7 +27,7 @@ users.post('/', async (req, res, next) => {
 })
 
 //GET /api/users/:id
-users.get('/:id', validateUserId(), async (req, res, next) => {
+users.get('/:id', validateUserId(), validateUserProfile(), async (req, res, next) => {
     try {
         const userProfile = await db.getUserProfile(req.params.id)
         const userListings = await Listings.findByUserId(req.params.id)
