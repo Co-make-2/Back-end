@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const listModel = require("../model/listings-model");
 const db = require("../data/dbConfig");
-const restrict = require("./restrictMiddleware");
+const { restrict, validateUserId } = require("./restrictMiddleware");
 
 
 /*************get all listings  *****************************************************************/
@@ -130,23 +130,5 @@ router.post("/:id", restrict, async (req,res) => {
         res.status(501).json({ message:"Could not commit vote"})
     }
 })
-
-function validateUserId(){
-    return async (req, res, next) => {
-        try{
-            const { id } = req.params
-            const user = await db("users").where({ id }).first()
-
-            if(!user){
-                return res.status(404).json({ mesage:"User not found"})
-            }
-            req.user = user
-            next()
-
-        }catch(err){
-
-        }
-    }
-}
 
 module.exports = router;

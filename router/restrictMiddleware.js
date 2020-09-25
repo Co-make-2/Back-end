@@ -1,6 +1,24 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = async (req,res,next) => {
+function validateUserId(){
+    return async (req, res, next) => {
+        try{
+            const { id } = req.params
+            const user = await db("users").where({ id }).first()
+
+            if(!user){
+                return res.status(404).json({ mesage:"User not found"})
+            }
+            req.user = user
+            next()
+
+        }catch(err){
+
+        }
+    }
+}
+
+async function restrict(req,res,next) {
     try{
         const token = req.headers.authorization;
         if(!token){
@@ -20,3 +38,8 @@ module.exports = async (req,res,next) => {
         res.status(401).json({ message: "You shall not pass!!"})
     }
 };
+
+module.exports = {
+    validateUserId,
+    restrict
+}
