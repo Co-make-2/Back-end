@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const listModel = require("../model/listings-model");
 const db = require("../data/dbConfig");
-const restrict = require("./restrictMiddleware");
+const { restrict, validateUserId } = require("./restrictMiddleware");
 
 
 /*************get all listings  *****************************************************************/
@@ -29,21 +29,6 @@ router.post("/", restrict, async(req,res) => {
     }catch(err){
         console.log(err)
         res.status(500).json({ message: "Could not add listing"})
-    }
-});
-
-/*************get listings by userId *************************/
-router.get("/users/:id", restrict, validateUserId(), async(req,res)=> {
-    try{
-        const listings = await listModel.findByUserId(req.params.id)
-        if(!listings){
-            res.status(401).json({ message:"The user has not created any listings"})
-        }
-        res.json(listings)
-
-    }catch(err){
-        console.log(err)
-        res.status(500).json({ message:"Could not retrieve user's listings"})
     }
 });
 
@@ -130,23 +115,5 @@ router.post("/:id", restrict, async (req,res) => {
         res.status(501).json({ message:"Could not commit vote"})
     }
 })
-
-function validateUserId(){
-    return async (req, res, next) => {
-        try{
-            const { id } = req.params
-            const user = await db("users").where({ id }).first()
-
-            if(!user){
-                return res.status(404).json({ mesage:"User not found"})
-            }
-            req.user = user
-            next()
-
-        }catch(err){
-
-        }
-    }
-}
 
 module.exports = router;

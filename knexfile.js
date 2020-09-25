@@ -39,13 +39,9 @@ module.exports = {
   },
 
   production: {
-    client: 'sqlite3',
+    client: 'pg',
     useNullAsDefault: true,
-    connection: {
-      database: './data/comake.db3',
-      user:     'lambdastudent',
-      password: 'ilovecoding'
-    },
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: './data/migrations',
     },
