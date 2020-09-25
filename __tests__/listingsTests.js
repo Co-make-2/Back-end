@@ -13,9 +13,8 @@ afterAll(async () => {
     await db.destroy()
 });
 jest.setTimeout(9000);
-const token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYwMDczNzgxOX0.OAo3aF2aoL6EQJeRtPiG3QOK05RyASnHze7577gxric;
-const username = "justaduck";
-const password = "whatup"
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYwMDczNzgxOX0.OAo3aF2aoL6EQJeRtPiG3QOK05RyASnHze7577gxric';
+
 
 describe("listings endpoints testing", () => {
     it("POST /api/listings", async() => {
