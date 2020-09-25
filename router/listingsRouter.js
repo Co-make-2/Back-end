@@ -8,7 +8,7 @@ const { restrict, validateUserId } = require("./restrictMiddleware");
 
 router.get("/", restrict, async(req,res) => {
     try{
-        const listings = await listModel.findBy(req.body.city || req.body.state || req.body.zipCode)
+        const listings = await db("listings")
         res.status(200).json(listings)
     }catch(err){
         console.log(err)
