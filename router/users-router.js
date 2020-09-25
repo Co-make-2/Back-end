@@ -22,7 +22,8 @@ users.post('/', async (req, res, next) => {
 
     } catch (err) {
         res.status(500).json({ message: "Could not add user's profile to the database"})
-        next(err)
+        console.log(err)
+res.status(500).json({ message: "Something unexpected happened" });
     }
 })
 
@@ -38,7 +39,8 @@ users.get('/:id', validateUserId(), validateUserProfile(), async (req, res, next
         })
         
     } catch (err) {
-        next(err)
+        console.log(err)
+res.status(500).json({ message: "Something unexpected happened" });
     }
 })
 
@@ -55,7 +57,8 @@ users.put('/:id', validateUserId(), async (req, res, next) => {
             res.status(200).json(userProfile)
         }
     } catch (err) {
-        next(err)
+        console.log(err)
+res.status(500).json({ message: "Something unexpected happened" });
     }
 })
 
@@ -72,7 +75,8 @@ users.delete('/:id', validateUserId(), async (req, res, next) => {
             res.status(200).end()
         }
     } catch (err) {
-        next(err)
+        console.log(err)
+res.status(500).json({ message: "Something unexpected happened" });
     }
 })
 

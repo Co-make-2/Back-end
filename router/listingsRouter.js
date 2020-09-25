@@ -7,7 +7,7 @@ const { restrict, validateUserId } = require("./restrictMiddleware");
 
 /*************get all listings  *****************************************************************/
 
-router.get("/", restrict, async(req,res) => {
+router.get("/", restrict, async(req,res, next) => {
     console.log(req.token)
     try{
         const [{ zipCode }] = await userModel.getUserProfile(req.token.userId)
@@ -15,7 +15,9 @@ router.get("/", restrict, async(req,res) => {
         res.status(200).json(listings)
     } catch(err) {
         console.log(err)
-        res.status(500).json(err)
+        res.status(500).json({
+            message: "Something unexpected happened"
+        })
     }
 });
 

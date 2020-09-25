@@ -31,7 +31,8 @@ users.post("/", async (req, res, next) => {
     res.cookie("token", token);
     res.status(200).json({ token, message: `Welcome new user` });
   } catch (err) {
-    next(err);
+    console.log(err)
+res.status(500).json({ message: "Something unexpected happened" });;
   }
 });
 
