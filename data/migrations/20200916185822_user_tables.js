@@ -17,7 +17,7 @@ exports.up = function(knex) {
         tbl.text("city").notNull()
         tbl.text("state").notNull()
         tbl.text("zipCode").notNull()
-        tbl.integer("upVotes").notNull().defaultTo(0)
+        tbl.integer("upVotes").defaultTo(0)
     })
 
     .createTable("user-profiles", tbl => {
