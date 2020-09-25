@@ -28,7 +28,6 @@ exports.up = function(knex) {
         tbl.text("state").notNull()
         tbl.text("zipCode").notNull()
         tbl.text("skills")
-        // tbl.text("listings").references("listingsName").inTable("listings")
     })
 };
 
