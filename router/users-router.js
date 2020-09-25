@@ -40,7 +40,7 @@ users.get('/:id', validateUserId(), validateUserProfile(), async (req, res, next
         
     } catch (err) {
         console.log(err)
-res.status(500).json({ message: "Something unexpected happened" });
+        res.status(500).json({ message: "Something unexpected happened" });
     }
 })
 

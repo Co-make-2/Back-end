@@ -12,8 +12,9 @@ function validateUserId(){
             req.user = user
             next()
 
-        }catch(err){
-
+        } catch(err) {
+            console.log(err)
+            return res.status(404).json({ mesage:"User not found"})
         }
     }
 }
@@ -30,8 +31,9 @@ function validateUserProfile(){
             req.user = user
             next()
 
-        }catch(err){
-
+        } catch(err) {
+            console.log(err)
+            return res.status(404).json({ mesage:"User not found"})
         }
     }
 }
