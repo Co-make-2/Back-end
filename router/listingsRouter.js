@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const listModel = require("../model/listings-model");
+const userModel = require("../model/user-model")
 const db = require("../data/dbConfig");
 const { restrict, validateUserId } = require("./restrictMiddleware");
 
@@ -7,10 +8,12 @@ const { restrict, validateUserId } = require("./restrictMiddleware");
 /*************get all listings  *****************************************************************/
 
 router.get("/", restrict, async(req,res) => {
+    console.log(req.token)
     try{
-        const listings = await db("listings")
+        const [{ zipCode }] = await userModel.getUserProfile(req.token.userId)
+        const listings = await listModel.findBy({ zipCode })
         res.status(200).json(listings)
-    }catch(err){
+    } catch(err) {
         console.log(err)
         res.status(500).json(err)
     }
