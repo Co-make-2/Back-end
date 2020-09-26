@@ -1,8 +1,7 @@
 const supertest = require("supertest");
 const server = require("../server");
 const db = require("../data/dbConfig");
-const { JsonWebTokenError } = require("jsonwebtoken");
-const { isMainThread } = require("worker_threads");
+
 
 beforeAll(async () => {
     await db.migrate.rollback()
@@ -29,8 +28,28 @@ describe("listings endpoints testing", () => {
             "location":"5th and main street", 
             "city":"Athens",
             "state": "PA",
-            "zipCode":"18840"
+            "zipCode":"18810"
         })
-        console.log(res)
+       // console.log(res)
+        expect(res.statusCode).toBe(201)
+        expect(res.type).toBe('application/json')
+        expect(res.body.message).toBe("Task created successfully")
     })  
+    it("POST /api/listings/city  get all listings by city", async () => {
+        const res = await supertest(server)
+        .post("/api/listings/city")
+        .set("authorization", token)
+        .send({ "city": "Athens"})
+       // console.log(res)
+        expect(res.statusCode).toBe(201)
+        expect(res.type).toBe('application/json')
+        expect(res.body).toHaveLength(1)
+    })
+    it("POST /api/listings/zipcode  get all listings by zipcode", async () => {
+        const res = await supertest(server)
+        .post("/api/listings/zipcode")
+        .set("authorization", token)
+        .send({ "zipCode": "18810"})
+        console.log(res)
+    })
 });

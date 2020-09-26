@@ -5,7 +5,7 @@ const db = require("../data/dbConfig");
 const { restrict, validateUserId } = require("./restrictMiddleware");
 
 
-/*************get all listings  *****************************************************************/
+/*************get all listings for a users zipCode *****************************************************************/
 
 router.get("/", restrict, async(req,res, next) => {
     console.log(req.token)
@@ -21,7 +21,7 @@ router.get("/", restrict, async(req,res, next) => {
     }
 });
 
-/*************add new listing return listing id if created successfully************************/
+/*************add new listing return listing return success message************************/
 router.post("/", restrict, async(req,res) => {
     try{
         const newListing = await listModel.addListing(req.body)
