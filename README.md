@@ -54,5 +54,5 @@ listing with the specified id is deleted upon successful completion a message is
 
 increment or decrement on vote 
 
-put to   https://comake-app.herokuapp.com/api/listings/:id
+put to   https://comake-app.herokuapp.com/api/listings/:id/upvote
 expects   "upVote":1  or "upVote":-1  mvp is up vote so if you don't want to do a down vote you don't have to but the option is there upon success a message is returned saying Vote recorded.

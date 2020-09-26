@@ -44,12 +44,54 @@ describe("listings endpoints testing", () => {
         expect(res.statusCode).toBe(201)
         expect(res.type).toBe('application/json')
         expect(res.body).toHaveLength(1)
+       // expect(res.body.username).toBe("justaduck")
     })
     it("POST /api/listings/zipcode  get all listings by zipcode", async () => {
         const res = await supertest(server)
         .post("/api/listings/zipcode")
         .set("authorization", token)
         .send({ "zipCode": "18810"})
-        console.log(res)
+       // console.log(res)
+        expect(res.statusCode).toBe(201)
+        expect(res.type).toBe('application/json')
+       // expect(res.body.username).toBe("justaduck")
+        //expect(res.body.userId).toBe(1)
+    })
+    it("PUT  /api/listings/id   edit listing by listingsId", async () => {
+        const res = await supertest(server)
+        .put("/api/listings/1")
+        .set("authorization", token)
+        .send({
+            "userId":1, 
+            "username":"justaduck", 
+            "listingsName":"stuff edited", 
+            "description":"stuff edited", 
+            "location":"5th and main street", 
+            "city":"Athens",
+            "state": "PA",
+            "zipCode":"18810"
+        })
+       // console.log(res)
+        expect(res.statusCode).toBe(201)
+        expect(res.type).toBe('application/json')
+        expect(res.body.message).toBe('Listing edited successfully')
+    })
+    it("PUTS /api/listings/:id/upvote  increment vote by 1", async () => {
+        const res = await supertest(server)
+        .post("/api/listings/1/upvote")
+        .set("authorization", token)
+        .send({ "upVotes": 1})
+        //console.log(res)
+        expect(res.statusCode).toBe(201)
+        expect(res.type).toBe("application/json")
+        expect(res.body.message).toBe("Vote recorded")
+    })
+    it("DELETE /api/listings/:id   deletes a listing", async () => {
+        const res = await supertest(server)
+        .delete("/api/listings/1")
+        .set("authorization", token)
+        expect(res.statusCode).toBe(202)
+        expect(res.type).toBe("application/json")
+        expect(res.body.message).toBe("Listing deleted successfully")
     })
 });
