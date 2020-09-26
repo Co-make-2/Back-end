@@ -28,14 +28,14 @@ describe("listings endpoints testing", () => {
             "location":"5th and main street", 
             "city":"Athens",
             "state": "PA",
-            "zipCode":"18840"
+            "zipCode":"18810"
         })
        // console.log(res)
         expect(res.statusCode).toBe(201)
         expect(res.type).toBe('application/json')
         expect(res.body.message).toBe("Task created successfully")
     })  
-    it("GET /api/listings/city", async () => {
+    it("POST /api/listings/city  get all listings by city", async () => {
         const res = await supertest(server)
         .post("/api/listings/city")
         .set("authorization", token)
@@ -44,5 +44,12 @@ describe("listings endpoints testing", () => {
         expect(res.statusCode).toBe(201)
         expect(res.type).toBe('application/json')
         expect(res.body).toHaveLength(1)
+    })
+    it("POST /api/listings/zipcode  get all listings by zipcode", async () => {
+        const res = await supertest(server)
+        .post("/api/listings/zipcode")
+        .set("authorization", token)
+        .send({ "zipCode": "18810"})
+        console.log(res)
     })
 });
