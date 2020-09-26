@@ -36,7 +36,6 @@ describe("user testing", () => {
                // console.log(res)
                 expect(res.statusCode).toBe(200)
                 expect(res.type).toBe('application/json')
-               // expect(res.body.message).toBe("Welcome justaduck")
     })
 /*
     it("POST /api/users", async() => {

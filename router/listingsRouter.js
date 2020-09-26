@@ -102,7 +102,7 @@ router.delete("/:id", restrict, async(req, res) => {
 });
 
 /***************increment or decrement votes on listing by id *************************************/
-router.post("/:id", restrict, async (req,res) => {
+router.post("/:id/upvote", restrict, async (req,res) => {
     try{
         const listingsId = req.params.id
         let listing = await listModel.findById(listingsId)
