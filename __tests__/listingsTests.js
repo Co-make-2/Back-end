@@ -57,9 +57,9 @@ describe("listings endpoints testing", () => {
         expect(res.body.username).toBe("justaduck")
         expect(res.body.userId).toBe(1)
     })
-    it("PUT  /api/listings/:id   edit listing by listingsId", async () => {
+    it("PUT  /api/listings/id   edit listing by listingsId", async () => {
         const res = await supertest(server)
-        .post("/api/listings/1")
+        .put("/api/listings/1")
         .set("authorization", token)
         .send({
             "userId":1, 
@@ -71,6 +71,9 @@ describe("listings endpoints testing", () => {
             "state": "PA",
             "zipCode":"18810"
         })
-        console.log(res)
+       // console.log(res)
+        expect(res.statusCode).toBe(201)
+        expect(res.type).toBe('application/json')
+        expect(res.body.message).toBe('Listing edited successfully')
     })
 });
